@@ -1,14 +1,22 @@
-import { ALONZO_GENESIS_COST_MODEL_PARAMS } from "@helios-lang/uplc"
+import { COST_MODEL_PARAMS } from "./CostModelParams.js"
 
 /**
- * @typedef {import("@helios-lang/uplc").CostModelParamsV1} CostModelParamsV1
+ * @typedef {import("./CostModelParams.js").CostModelParams} CostModelParams
  */
 
 /**
  * @typedef {{
  *   collateralPercentage: number
+ *   maxCollateralInputs: number
+ *   maxValueSize: number
+ * }} CommonAlonzoBabbageParams
+ */
+
+/**
+ * Named `EraGenesisParams` and not `GenesisParams` to avoid confusion with the actual genesis
+ * @typedef {CommonAlonzoBabbageParams & {
  *   costModels: {
- *     PlutusV1: CostModelParamsV1
+ *     PlutusV1: CostModelParams
  *   }
  *   executionPrices: {
  *     prSteps: {
@@ -25,20 +33,21 @@ import { ALONZO_GENESIS_COST_MODEL_PARAMS } from "@helios-lang/uplc"
  *     exUnitsMem: number
  *     exUnitsSteps: number
  *   }
- *   maxCollateralInputs: number
  *   maxTxExUnits: {
  *     exUnitsMem: number
  *     exUnitsSteps: number
  *   }
- *   maxValueSize: number
- * }} AlonzoGenesisParams
+ * }} EraGenesisParams
  */
 
 /**
- * @type {AlonzoGenesisParams}
+ * @type {EraGenesisParams}
  */
-export const ALONZO_GENESIS_PARAMS = {
-    lovelacePerUTxOWord: 34482,
+export const ERA_GENESIS_PARAMS = {
+    collateralPercentage: 150,
+    costModels: {
+        PlutusV1: COST_MODEL_PARAMS
+    },
     executionPrices: {
         prSteps: {
             numerator: 721,
@@ -49,18 +58,15 @@ export const ALONZO_GENESIS_PARAMS = {
             denominator: 10000
         }
     },
-    maxTxExUnits: {
-        exUnitsMem: 10000000,
-        exUnitsSteps: 10000000000
-    },
+    lovelacePerUTxOWord: 34482,
     maxBlockExUnits: {
         exUnitsMem: 50000000,
         exUnitsSteps: 40000000000
     },
-    maxValueSize: 5000,
-    collateralPercentage: 150,
     maxCollateralInputs: 3,
-    costModels: {
-        PlutusV1: ALONZO_GENESIS_COST_MODEL_PARAMS
-    }
+    maxTxExUnits: {
+        exUnitsMem: 10000000,
+        exUnitsSteps: 10000000000
+    },
+    maxValueSize: 5000
 }
