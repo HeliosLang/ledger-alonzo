@@ -1,8 +1,4 @@
-import { COST_MODEL_PARAMS } from "./CostModelParams.js"
-
-/**
- * @typedef {import("./CostModelParams.js").CostModelParams} CostModelParams
- */
+import { COST_MODEL_PARAMS_V1 } from "./CostModelParams.js"
 
 /**
  * @typedef {{
@@ -16,7 +12,7 @@ import { COST_MODEL_PARAMS } from "./CostModelParams.js"
  * Named `EraGenesisParams` and not `GenesisParams` to avoid confusion with the actual genesis
  * @typedef {CommonAlonzoBabbageParams & {
  *   costModels: {
- *     PlutusV1: CostModelParams
+ *     PlutusV1: number[]
  *   }
  *   executionPrices: {
  *     prSteps: {
@@ -46,7 +42,7 @@ import { COST_MODEL_PARAMS } from "./CostModelParams.js"
 export const ERA_GENESIS_PARAMS = {
     collateralPercentage: 150,
     costModels: {
-        PlutusV1: COST_MODEL_PARAMS
+        PlutusV1: COST_MODEL_PARAMS_V1
     },
     executionPrices: {
         prSteps: {
