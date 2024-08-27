@@ -1,6 +1,6 @@
 {
     "name": "@helios-lang/ledger-alonzo",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "Cardano ledger types for Alonzo era",
     "type": "module",
     "main": "src/index.js",
